@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import TasksService from '@/services/api/tasks'
 import { toast } from 'sonner'
 import {
 	AlertDialog,
@@ -21,11 +20,12 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
-import LoadingButton from '@/components/ui/LoadingButton'
 import { MoreHorizontal } from 'lucide-react'
 import { TaskDto } from '@/dto/tasks'
 import useAppStore from '@/store/store'
 import { Row } from '@tanstack/react-table'
+import TasksService from '@/services/tasks/tasks.service'
+import LoadingButton from '@/app/components/LoadingButton'
 
 const Actions = ({ row }: { row: Row<TaskDto> }) => {
 	const task = row.original

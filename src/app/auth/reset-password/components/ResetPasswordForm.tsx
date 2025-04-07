@@ -1,11 +1,13 @@
 'use client'
 
-import AuthValidation from '@/schemas/authFormSchema'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useCallback, useState } from 'react'
+import AuthValidation from '@/schemas/authFormSchema'
+import { passwordDto } from '@/dto/auth'
+import AuthService from '@/services/auth/auth.service'
 import {
 	Form,
 	FormControl,
@@ -13,12 +15,10 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../ui/form'
-import PasswordInput from '../../ui/PasswordInput'
-import AuthService from '@/services/api/auth'
-import { passwordDto } from '@/dto/auth'
+} from '@/components/ui/form'
+import PasswordInput from '../../components/PasswordInput'
 import { toast } from 'sonner'
-import LoadingButton from '@/components/ui/LoadingButton'
+import LoadingButton from '@/app/components/LoadingButton'
 
 const formConfig = {
 	validationSchema: AuthValidation.resetPasswordSchema,

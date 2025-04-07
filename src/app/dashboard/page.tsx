@@ -1,13 +1,14 @@
-import TasksService from '@/services/api/tasks'
-import Head from '@/components/routes/Dashboard/Head'
+import Head from '@/app/dashboard/components/Head'
 import TaskEditor from '@/components/TaskEditor/TaskEditor'
-import DashboardTable from '@/components/routes/Dashboard/DashboardTable/DashboardTable'
-import { PageProps } from '../../../.next/types/app/dashboard/page'
+import DashboardTable from '@/app/dashboard/components/DashboardTable/DashboardTable'
+// import { PageProps } from '../../../.next/types/app/dashboard/page'
 import { cookies } from 'next/headers'
 import { verifyToken } from '@/utils/token'
-import EmptyPlaceholder from '@/components/routes/Dashboard/EmptyPlaceholder'
+import EmptyPlaceholder from '@/app/dashboard/components/EmptyPlaceholder'
+import TasksService from '@/services/tasks/tasks.service'
 
-interface DashboardPageProps extends PageProps {
+interface DashboardPageProps {
+	//  extends PageProps
 	searchParams: Promise<{
 		limit?: string
 		page?: string

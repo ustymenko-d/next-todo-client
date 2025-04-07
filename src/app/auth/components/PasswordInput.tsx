@@ -9,7 +9,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Button } from './button'
+import { Button } from '@/components/ui/button'
 import useAppStore from '@/store/store'
 
 interface PasswordInputProps extends InputHTMLAttributes<HTMLInputElement> {

@@ -1,10 +1,9 @@
 import apiRequestHandler from '@/utils/apiRequestHandler'
+import { API_URL } from './tasks.service'
 import { GetTasksRequestDto, TaskBaseDto, TaskDto } from '@/dto/tasks'
 import { IGetTasksResponse, ITaskResponse } from '@/types/tasks'
 
-const API_URL = '/tasks'
-
-const TasksService = {
+const TasksApi = {
 	getTasks: (payload: GetTasksRequestDto): Promise<IGetTasksResponse> =>
 		apiRequestHandler<IGetTasksResponse, GetTasksRequestDto>(
 			`${API_URL}/get`,
@@ -29,4 +28,4 @@ const TasksService = {
 		apiRequestHandler<ITaskResponse>(`${API_URL}/${taskId}`, 'delete'),
 }
 
-export default TasksService
+export default TasksApi

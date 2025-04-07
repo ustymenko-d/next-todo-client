@@ -1,6 +1,6 @@
-import AuthService from '@/services/api/auth'
 import Axios, { getServerAxios } from '@/services/Axios'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import AuthService from '@/services/auth/auth.service'
 
 type Method = 'post' | 'get' | 'delete' | 'patch' | 'put'
 

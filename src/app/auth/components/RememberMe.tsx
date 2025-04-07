@@ -1,8 +1,8 @@
 import { Control } from 'react-hook-form'
 import { Checkbox } from '@/components/ui/checkbox'
-import { FormControl, FormField, FormItem } from './form'
+import { FormControl, FormField, FormItem } from '../../../components/ui/form'
 
-const RememberMeCheckbox = ({ control }: { control: Control }) => {
+const RememberMe = ({ control }: { control: Control }) => {
 	return (
 		<FormField
 			control={control}
@@ -29,4 +29,4 @@ const RememberMeCheckbox = ({ control }: { control: Control }) => {
 	)
 }
 
-export default RememberMeCheckbox
+export default RememberMe

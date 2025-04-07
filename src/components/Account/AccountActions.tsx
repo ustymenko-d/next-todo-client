@@ -2,15 +2,15 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import AuthService from '@/services/api/auth'
 import useAppStore from '@/store/store'
 import useBreakpoints from '@/hooks/useBreakpoints'
 import { toast } from 'sonner'
 import { Button } from '../ui/button'
 import { Dialog, DialogTrigger } from '../ui/dialog'
 import AccountDialogContent from './components/AccountDialogContent'
-import LoadingButton from '../ui/LoadingButton'
 import { CircleUser, LogOut } from 'lucide-react'
+import AuthService from '@/services/auth/auth.service'
+import LoadingButton from '@/app/components/LoadingButton'
 
 const AccountActions = () => {
 	const router = useRouter()

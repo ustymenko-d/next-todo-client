@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { Button } from '../../ui/button'
+import { Button } from '../../../components/ui/button'
 import { RotateCcw } from 'lucide-react'
 
 const baseUrl = '/dashboard?page=1&limit=25&topLayerTasks=true'

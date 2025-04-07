@@ -9,7 +9,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
-import AuthForm from './AuthForm'
+import AuthForm from '@/app/auth/components/AuthForm'
 
 const cardConfig = {
 	login: {
@@ -30,11 +30,11 @@ const cardConfig = {
 
 const AuthCard = () => {
 	const authFormType = useAppStore((state) => state.authFormType)
-
 	const { title, description } = useMemo(
 		() => cardConfig[authFormType],
 		[authFormType]
 	)
+
 	return (
 		<Card>
 			<CardHeader>
