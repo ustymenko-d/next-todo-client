@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
 const baseConfig = {
 	baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
@@ -6,15 +6,25 @@ const baseConfig = {
 	timeout: 5000,
 }
 
-const Axios = axios.create(baseConfig)
+export const Axios: AxiosInstance = axios.create({
+	...baseConfig,
+})
 
-export default Axios
+export const ApiAxios: AxiosInstance = axios.create({
+	...baseConfig,
+	baseURL: '/api',
+})
+
+export const getAxiosInstance = async (): Promise<AxiosInstance> =>
+	typeof window === 'undefined'
+		? await getServerAxios()
+		: Promise.resolve(Axios)
 
 export const getServerAxios = async () => {
 	const { cookies } = await import('next/headers')
-	const serverAxios = axios.create(baseConfig)
+	const instance = axios.create(baseConfig)
 
-	serverAxios.interceptors.request.use(async (config) => {
+	instance.interceptors.request.use(async (config) => {
 		const cookieStore = await cookies()
 		const cookieHeader = cookieStore.toString()
 
@@ -25,5 +35,5 @@ export const getServerAxios = async () => {
 		return config
 	})
 
-	return serverAxios
+	return instance
 }

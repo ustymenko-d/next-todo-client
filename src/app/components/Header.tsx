@@ -5,7 +5,9 @@ import { usePathname } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
 // import useAppStore from '@/store/store'
 import ThemeToggle from '@/components/theme/ThemeToggle'
-import { buttonVariants } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
+// import { ApiAxios } from '@/services/Axios'
+import AuthService from '@/services/auth/auth.service'
 
 const Header = () => {
 	const pathname = usePathname()
@@ -27,6 +29,18 @@ const Header = () => {
 				)}
 				<ThemeToggle />
 				{/* {isAuthorized && <AccountActions />} */}
+				<Button
+					onClick={async () => {
+						const res = await AuthService.login({
+							email: 'yllaciarbegla@gmail.com',
+							password: 'Secure123',
+							rememberMe: true,
+						})
+						const { username } = res
+						console.log(username)
+					}}>
+					test login
+				</Button>
 			</div>
 		</header>
 	)
