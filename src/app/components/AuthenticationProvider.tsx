@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import AuthService from '@/services/api/auth'
 import useAppStore from '@/store/store'
+import AuthService from '@/services/auth.service'
 
-const useAccount = () => {
+const useAuthentication = () => {
 	const router = useRouter()
 	const isAuthorized = useAppStore((state) => state.isAuthorized)
 	const setIsAuthorized = useAppStore((state) => state.setIsAuthorized)
@@ -15,9 +15,9 @@ const useAccount = () => {
 	const fetchAccountInfo = useCallback(async () => {
 		try {
 			if (!accountInfo) {
-				const response = await AuthService.checkAuth()
-				if (response) {
-					setAccountInfo(response)
+				const accountInfo = await AuthService.getAccountInfo()
+				if (accountInfo) {
+					setAccountInfo(accountInfo)
 					if (!isAuthorized) setIsAuthorized(true)
 				} else {
 					await AuthService.clearAuthCookies()
@@ -38,7 +38,7 @@ const useAccount = () => {
 	}
 }
 
-const AccountProvider = ({
+const AuthenticationProvider = ({
 	children,
 }: Readonly<{
 	children: React.ReactNode
@@ -49,22 +49,24 @@ const AccountProvider = ({
 		setIsAuthorized,
 		accountInfo,
 		setAccountInfo,
-	} = useAccount()
+	} = useAuthentication()
 	const pathname = usePathname()
+	const isHomePage = pathname === '/' || pathname.startsWith('/auth')
 
 	useEffect(() => {
-		if (pathname === '/' || pathname.startsWith('/auth')) {
+		if (isHomePage) {
 			if (isAuthorized) setIsAuthorized(false)
 			if (accountInfo) setAccountInfo(null)
-		}
-
-		if (pathname.startsWith('/dashboard')) {
-			fetchAccountInfo()
+		} else {
+			if (!isAuthorized || !accountInfo) {
+				fetchAccountInfo()
+			}
 		}
 	}, [
 		accountInfo,
 		fetchAccountInfo,
 		isAuthorized,
+		isHomePage,
 		pathname,
 		setAccountInfo,
 		setIsAuthorized,
@@ -73,4 +75,4 @@ const AccountProvider = ({
 	return <>{children}</>
 }
 
-export default AccountProvider
+export default AuthenticationProvider

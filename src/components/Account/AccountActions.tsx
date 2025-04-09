@@ -9,7 +9,7 @@ import { Button } from '../ui/button'
 import { Dialog, DialogTrigger } from '../ui/dialog'
 import AccountDialogContent from './components/AccountDialogContent'
 import { CircleUser, LogOut } from 'lucide-react'
-import AuthService from '@/services/auth/auth.service'
+import AuthService from '@/services/auth.service'
 import LoadingButton from '@/app/components/LoadingButton'
 
 const AccountActions = () => {

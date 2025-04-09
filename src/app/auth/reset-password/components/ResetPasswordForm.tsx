@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import AuthValidation from '@/schemas/authFormSchema'
 import { passwordDto } from '@/dto/auth'
-import AuthService from '@/services/auth/auth.service'
+import AuthService from '@/services/auth.service'
 import {
 	Form,
 	FormControl,
@@ -46,11 +46,11 @@ const ResetPasswordForm = () => {
 		async (payload: passwordDto) => {
 			setLoading(true)
 			try {
-				const param = 'resetToken=' + searchParams.get('resetToken')
-				const { success, message } = await AuthService.resetPassword(
+				const resetToken = searchParams.get('resetToken') || ''
+				const { success, message } = await AuthService.resetPassword({
 					payload,
-					param
-				)
+					resetToken,
+				})
 
 				setStatus(success ? 'success' : 'error')
 

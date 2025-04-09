@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import ThemeProviderWrapper from '@/components/theme/ThemeProviderWrapper'
-import Header from '@/app/components/Header'
+import Header from '@/app/components/Header/Header'
 import Footer from '@/app/components/Footer'
 import { Toaster } from 'sonner'
 import './globals.css'
+import AuthenticationProvider from './components/AuthenticationProvider'
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -32,15 +33,17 @@ const RootLayout = ({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh flex flex-col`}>
 				<ThemeProviderWrapper>
-					<Header />
-					<main className='container flex flex-col items-center justify-center p-2 mx-auto border-dashed grow sm:border-x lg:p-4'>
-						{children}
-					</main>
-					<Footer />
-					<Toaster
-						position='top-center'
-						richColors
-					/>
+					<AuthenticationProvider>
+						<Header />
+						<main className='container flex flex-col items-center justify-center p-2 mx-auto border-dashed grow sm:border-x lg:p-4'>
+							{children}
+						</main>
+						<Footer />
+						<Toaster
+							position='top-center'
+							richColors
+						/>
+					</AuthenticationProvider>
 				</ThemeProviderWrapper>
 			</body>
 		</html>

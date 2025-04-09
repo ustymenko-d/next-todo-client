@@ -24,7 +24,7 @@ import { MoreHorizontal } from 'lucide-react'
 import { TaskDto } from '@/dto/tasks'
 import useAppStore from '@/store/store'
 import { Row } from '@tanstack/react-table'
-import TasksService from '@/services/tasks/tasks.service'
+import TasksService from '@/services/tasks.service'
 import LoadingButton from '@/app/components/LoadingButton'
 
 const Actions = ({ row }: { row: Row<TaskDto> }) => {

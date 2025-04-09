@@ -3,9 +3,9 @@ import TaskEditor from '@/components/TaskEditor/TaskEditor'
 import DashboardTable from '@/app/dashboard/components/DashboardTable/DashboardTable'
 // import { PageProps } from '../../../.next/types/app/dashboard/page'
 import { cookies } from 'next/headers'
-import { verifyToken } from '@/utils/token'
+import { verifyToken } from '@/utils/tokens'
 import EmptyPlaceholder from '@/app/dashboard/components/EmptyPlaceholder'
-import TasksService from '@/services/tasks/tasks.service'
+import TasksService from '@/services/tasks.service'
 
 interface DashboardPageProps {
 	//  extends PageProps
@@ -49,38 +49,38 @@ const fetchTasks = async (
 }
 
 const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
-	const {
-		page = 1,
-		limit = 25,
-		title = '',
-		topLayerTasks = 'true',
-	} = await searchParams
+	// const {
+	// 	page = 1,
+	// 	limit = 25,
+	// 	title = '',
+	// 	topLayerTasks = 'true',
+	// } = await searchParams
 
-	const accessToken = await getAccessToken()
-	let tasksData = null
+	// const accessToken = await getAccessToken()
+	// let tasksData = null
 
-	const pagination = {
-		page: +page,
-		limit: +limit,
-	}
+	// const pagination = {
+	// 	page: +page,
+	// 	limit: +limit,
+	// }
 
-	if (accessToken && verifyToken(accessToken))
-		tasksData = await fetchTasks(+page, +limit, title, !!topLayerTasks)
+	// if (accessToken && verifyToken(accessToken))
+	// 	tasksData = await fetchTasks(+page, +limit, title, !!topLayerTasks)
 
 	return (
 		<section className='w-full overflow-hidden rounded-[0.5rem] border bg-background shadow gap-3 grow p-2 sm:p-4 lg:p-8'>
 			<Head />
 
-			{tasksData ? (
+			{/* {tasksData ? (
 				<DashboardTable
 					data={tasksData.tasks}
 					pagination={{ ...pagination, pages: tasksData.pages }}
 				/>
 			) : (
 				<EmptyPlaceholder />
-			)}
+			)} */}
 
-			<TaskEditor />
+			{/* <TaskEditor /> */}
 		</section>
 	)
 }

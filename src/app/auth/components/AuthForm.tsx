@@ -14,7 +14,7 @@ import { baseAuthDto, emailDto } from '@/dto/auth'
 import { toast } from 'sonner'
 import { AuthFormType } from '@/types/auth'
 import { IResponseStatus } from '@/types/common'
-import AuthService from '@/services/auth/auth.service'
+import AuthService from '@/services/auth.service'
 
 export type TBaseFields = 'email' | 'password' | 'confirmPassword'
 type TFields = TBaseFields | 'rememberMe'
